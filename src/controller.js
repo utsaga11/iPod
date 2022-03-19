@@ -1,21 +1,20 @@
+import React,{ useState } from 'react';
 import './App.css';
-import Menu from './Menu';
-import Scr from './scr';
-import CoverFlow from './coverflow';
-import Music from './music';
-import Games from './games';
-import Settings from './settings'
+import Screen from './Screen';
 
 function Controller() {
-  const mainMenu = ['Cover Flow','Music','Games','Settings'];
-  const music= ['All Songs','Artists','Fav Songs'];
+  const mainMenu = ['CoverFlow','Music','Games','Settings'];
   const activeMenu = mainMenu;
+  const [activeScreen, setactiveScreen] = useState('');
+  function handleScreenChange(scr) {
+    setactiveScreen(scr);
+  }
 
   return (
     
     <div >
     <div className='screen'>
-       <Scr activeMenu={activeMenu}/>
+       <Screen activeMenu={activeMenu} handleScreenChange={handleScreenChange} activeScreen={activeScreen}/>
     </div>
     <div className="Controller">
     <div className='cont'>
@@ -24,7 +23,7 @@ function Controller() {
               /> </div>
           <div className='forw'><img alt="forward" className="" src="https://cdn-icons-png.flaticon.com/128/318/318476.png"
               /></div>
-          <div className='menu'>
+          <div className='menu' onClick={() =>handleScreenChange("")}>
           <img alt="menu" className="" src="https://cdn-icons-png.flaticon.com/128/809/809564.png"
               />
           </div>
